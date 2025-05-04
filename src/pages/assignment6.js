@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import * as d3 from "d3";
 import { Row, Col, Container, Dropdown } from "react-bootstrap";
-import {Graph} from "../components/graph";
-import {TreeMap} from "../components/treemap";
+import { Graph } from "../components/graph";
+import { TreeMap } from "../components/treemap";
 import { getTree } from "../utils/getTree";
 
 const csvUrl = "/api/csv";
@@ -75,8 +75,8 @@ const App = () => {
                     <h1>Healthcare Data</h1>
                     <h2>Context</h2>
                     <p>In this assignment, we will use the <a href="https://gist.github.com/hogwild/a716b6186d730c1d86962e9acaa1e59f">healthcare dataset</a>.
-                        The data contains information about patients with stroke and heart disease.
-                        We will visualize the relationships between different attributes in the data.</p>
+                        The data contains information about patients with "stroke" and "heart disease".
+                    </p>
                     <p>The following attributes in the dataset are used in this assignment:</p>
                     <ul>
                         <li>id: unique identifier</li>

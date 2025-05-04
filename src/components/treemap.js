@@ -1,5 +1,4 @@
 import { treemap, hierarchy, scaleOrdinal, schemeDark2, interpolateRgb, format } from "d3";
-import { useEffect } from "react";
 
 export function TreeMap(props) {
     const { margin, svg_width, svg_height, tree, selectedCell, setSelectedCell } = props;
@@ -19,21 +18,18 @@ export function TreeMap(props) {
     const adjustedSchemeDark2 = schemeDark2.map(color => interpolateRgb(color, "#ffffff")(0.2)); // 颜色变浅 20%
     const color = scaleOrdinal(adjustedSchemeDark2);
 
-    // 检查是否所有属性为 None，我发觉对于答案页面来说，如果都是none，会跳到一个错误页面，显示错误信息，所以我也做了一个。
+    // 检查是否所有属性为 None
     const allAttributesNone = !tree.children || tree.children.length === 0;
-    useEffect(() => {
-        if (allAttributesNone) {
-            document.body.innerHTML = `
-                <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: white;">
-                    <p style="color: black; font-size: 16px; text-align: center;">
-                        Application error: a client-side exception has occurred while loading infovis-assignment6-healthdata.vercel.app (see the browser console for more information).
-                    </p>
-                </div>
-            `;
-        }
-    }, [allAttributesNone]);
 
-    if (allAttributesNone) return null;
+    if (allAttributesNone) {
+        return (
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh", backgroundColor: "white" }}>
+                <p style={{ color: "black", fontSize: "16px", textAlign: "center" }}>
+                    Application error: a client-side exception has occurred while loading infovis-assignment6-healthdata.vercel.app (see the browser console for more information).
+                </p>
+            </div>
+        );
+    }
 
     // 这个部分是我写的Legend
     const legendItems = root.leaves().map(d => d.parent?.data)
