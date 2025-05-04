@@ -166,3 +166,14 @@ a.secondary {
     filter: invert();
   }
 }
+
+.tooltip rect {
+    fill: white;
+    stroke: black;
+    pointer-events: none;
+}
+
+.tooltip text {
+    font-size: 12px;
+    fill: #333;
+}
